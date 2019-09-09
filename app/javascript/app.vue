@@ -37,7 +37,7 @@
 
               <v-card>
                 <v-card-text>
-                  <v-text-field filled v-model="voteQuestion" label="Question" placeholder="What are we voting on?"></v-text-field>
+                  <v-text-field v-model="voteQuestion" label="Question" placeholder="What are we voting on?"></v-text-field>
                   <v-list dense diabled inactive>
                     <v-list-item-group color="primary">
                       <v-list-item v-for="(c, i) in allChoices" :key="i">
