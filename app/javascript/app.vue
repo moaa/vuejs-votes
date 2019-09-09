@@ -52,7 +52,7 @@
                       </v-list-item>
                     </v-list-item-group>
                   </v-list>
-                  <v-text-field filled label="Add Choice" v-model="voteChoice" placeholder="Choice" @keyup.enter="addChoice"></v-text-field>
+                  <v-text-field filled label="Add Choice" v-model="voteChoice" placeholder="Choice" @keyup.enter="addChoice" :append-outer-icon="voteChoice ? 'mdi-plus' : ''" @click:append-outer="addChoice"></v-text-field>
 
                   <v-divider class="my-2"></v-divider>
                 </v-card-text>
