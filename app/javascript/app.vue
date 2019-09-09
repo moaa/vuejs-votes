@@ -37,6 +37,7 @@
 
               <v-card>
                 <v-card-text>
+                  <v-alert v-model="showAlert" dismissible class="mb-4" type="error"> {{ validationText }} </v-alert>
                   <v-text-field v-model="voteQuestion" label="Question" placeholder="What are we voting on?"></v-text-field>
                   <v-list dense diabled inactive>
                     <v-list-item-group color="primary">
@@ -80,6 +81,8 @@ export default {
             voteChoice: '',
             allChoices: [],
             myPolls: [],
+            validationText: '',
+            showAlert: false
         }
     },
     methods: {
@@ -93,6 +96,16 @@ export default {
             this.allChoices.splice(this.allChoices.indexOf(choice), 1)
         },
         savePoll: function() {
+            if (!this.voteQuestion) {
+                this.validationText = 'Please enter valid question.'
+                this.showAlert = true
+                return
+            }
+            if (this.allChoices.length <= 1) {
+                this.validationText = 'Not enough choices.'
+                this.showAlert = true
+                return
+            }
             this.$http.post('/polls', {
                 poll: {
                     question: this.voteQuestion,
